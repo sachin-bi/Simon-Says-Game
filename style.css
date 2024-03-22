@@ -1,0 +1,16 @@
+body{
+    text-align: center;
+    background-color: dimgrey;
+}
+
+.btn{
+    height: 200px ;
+    width: 200px ;
+    border-radius: 20%;
+    border: 7px solid black;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+}
