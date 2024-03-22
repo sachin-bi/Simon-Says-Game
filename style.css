@@ -28,3 +28,7 @@ body{
 .blue{
     background-color: rgb(60, 60, 224);
 }
+
+.flash{
+    background-color: white;
+}
