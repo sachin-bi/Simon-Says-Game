@@ -5,6 +5,12 @@ let btns = ["yellow", "red", "green", "blue"];
 
 let started = false;
 let level = 0;
+let highScore = 0;
+let p = document.querySelector("p");
+let body = document.querySelector("body");
+
+
+// body.style.backgroundColor = "red";
 
 let h2 = document.querySelector("h2");
 
@@ -33,6 +39,7 @@ function userFlash(btn) {
 };
 
 function levelUp() {
+    userSeq = [];
     level++;
     h2.innerText = `Level ${level}`;
 
@@ -40,38 +47,55 @@ function levelUp() {
     let randColor = btns[randIdx];
     let randBtn = document.querySelector(`.${randColor}`);
     gameSeq.push(randColor)
-    console.log(gameSeq);
+    console.log("Game Array",gameSeq);
     gameFlash(randBtn);
-    console.log(randBtn);
 
 };
 
 
-function checkAns() {
-    // console.log("current level", level);
-    let idx = level - 1;
+function checkAns(idx) {
     if (userSeq[idx] == gameSeq[idx]) {
-        console.log("same value");
+        if(userSeq.length == gameSeq.length){
+            setTimeout(levelUp, 1000);
+        }
     }else{
-        h2.innerText = "Game Over! Press any key to restart.";
-        console.log("Game Over! Press any key to restart.");
+        h2.innerHTML = `Game Over! <b>Your score : ${level}</b> <br>  Press ENTER to restart. `;
+        console.log("Game Over!on level =",level);
+
+        body.style.backgroundColor = "red";
+        setTimeout(function () {
+            body.style.backgroundColor ="#009688";
+        },150);
+
+        reset();
     }
 }
 
 function btnPress() {
-    // console.log("btn was pressed");
-    // console.log(this);
     let btn = this;
     userFlash(btn);
 
     userColor = btn.getAttribute("id");
     userSeq.push(userColor);
-    console.log(userSeq);
 
-    checkAns(); 
+    checkAns(userSeq.length - 1); 
 };
 
 let allBtns = document.querySelectorAll(".btn");
 for (const btn of allBtns) {
     btn.addEventListener("click", btnPress);
 };
+
+function reset() {
+
+    if (level>highScore) {
+        highScore = level;
+        p.innerHTML = ` <b>High Score: ${highScore}</b> `;
+    }
+  
+
+    started = false;
+    level = 0;
+    gameSeq = [];
+    userSeq = [];
+}
