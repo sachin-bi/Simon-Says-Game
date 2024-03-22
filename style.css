@@ -8,9 +8,23 @@ body{
     width: 200px ;
     border-radius: 20%;
     border: 7px solid black;
+    margin: 2.5rem;
 }
 
 .btn-container{
     display: flex;
     justify-content: center;
+}
+
+.red{
+    background-color: rgb(223, 60, 60);
+}
+.green{
+    background-color: rgb(66, 219, 66);
+}
+.yellow{
+    background-color: rgb(214, 214, 83);
+}
+.blue{
+    background-color: rgb(60, 60, 224);
 }
